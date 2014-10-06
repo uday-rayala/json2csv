@@ -1,0 +1,16 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: auto;
+    position: relative;
+    width: 1400px;
+    background-color: gray;
+}
+
+
+#dropzone {
+    text-align: center;
+    background: PaleGoldenRod;
+    border: 1px dashed peru;
+    padding: 3em;
+    font-size: 1.5em;
+}
