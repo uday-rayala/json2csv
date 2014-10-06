@@ -25,11 +25,14 @@ function onFileLoaded(e) {
     var contents = e.target.result;
     var jsonData = JSON.parse(contents)["month-to-date"];
     var header = _.keys(jsonData[0]).join(",");
-    var csvData = _.map(jsonData, function(data) {
+    var csvRows = _.map(jsonData, function(data) {
         var row  = _.values(data).join(",");
         return row;
     }).join("\n");
-    console.log(header + "\n" + csvData);
+    var csvData = header + "\n" + csvRows;
+
+    var blob = new Blob([csvData], {type: "text/csv;charset=utf-8"});
+    saveAs(blob, "download.csv");
 }
 
 function onFileError(e) {
