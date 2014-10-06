@@ -23,7 +23,7 @@ function onFileLoaded(e) {
     dropzone.className += " hidden";
 
     var contents = e.target.result;
-    var jsonData = JSON.parse(contents)["month-to-date"];
+    var jsonData = JSON.parse(contents);
     var header = _.keys(jsonData[0]).join(",");
     var csvRows = _.map(jsonData, function(data) {
         var row  = _.values(data).join(",");
