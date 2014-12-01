@@ -24,10 +24,14 @@ function onFileLoaded(e) {
 
     var contents = e.target.result;
     var jsonData = JSON.parse(contents);
-    var header = _.keys(jsonData[0]).join(",");
+    var headers = _.keys(jsonData[0]);
+    var header = headers.join(",");
     var csvRows = _.map(jsonData, function(data) {
-        var row  = _.values(data).join(",");
-        return row;
+        var values = _.map(headers, function(header) {
+            return "\"" + data[header] + "\"";
+        });
+
+        return values.join(",");
     }).join("\n");
     var csvData = header + "\n" + csvRows;
 
