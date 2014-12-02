@@ -24,7 +24,14 @@ function onFileLoaded(e) {
 
     var contents = e.target.result;
     var jsonData = JSON.parse(contents);
-    var headers = _.keys(jsonData[0]);
+    var headers = _.chain(jsonData)
+        .map(function(data) {
+            return _.keys(data);
+        })
+        .flatten()
+        .uniq()
+        .value();
+
     var header = headers.join(",");
     var csvRows = _.map(jsonData, function(data) {
         var values = _.map(headers, function(header) {
